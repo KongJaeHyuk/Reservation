@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.room">
+
+	<insert id="insertRoom" parameterType="roomDTO">
+		insert into room (room_id, name, price, description, thumbnail_path, default_head)
+		values (
+			seq_room_id.nextval,
+			#{name},
+			#{price},
+			#{description},
+			#{thumbnail_path},
+			#{default_head}
+		)
+	</insert>
+	
+	<select id="selectRoom" resultType="roomDTO">
+		select
+			room_id, name, price, description, thumbnail_path, default_head
+		from
+			room
+	</select>
+
+	<select id="selectRoomInfo" resultType="roomDTO" parameterType="int">
+		select
+			room_id, name, price, description, thumbnail_path, default_head
+		from
+			room
+		where
+			room_id = #{_parameter}
+	</select>
+	
+	<update id="updateRoom" parameterType="roomDTO">
+		update room
+		set name = #{name},
+			price = #{price},
+			description = #{description},
+			thumbnail_path = #{thumbnail_path},
+			default_head = #{default_head}
+		where
+			room_id = #{room_id}
+	</update>
+</mapper>

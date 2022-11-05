@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.book">
+
+	<select id="selectBookInfoId" resultType="int">
+		select seq_book_info_id.nextval from dual
+	</select>
+
+	<insert id="insert" parameterType="rDTO">
+		insert into book_info(
+			book_info_id,
+			name,
+			tel,
+			email,
+			point
+		)
+		values (
+			#{user_id},
+			#{name},
+			#{tel},
+			#{email},
+			#{point}
+		)
+	</insert>
+
+</mapper>
